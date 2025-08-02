@@ -5,70 +5,119 @@
   let isOpen = false;
 </script>
 
+
 <div class="cabinet">
-  <!-- Top (Active) Drawer -->
-  <div class="drawer" on:click={() => isOpen = !isOpen}>
-    <strong>{data.category}</strong>
-    <div class="handle"></div>
-  </div>
-
-  {#if isOpen}
-    <div class="folder-container">
-      <Folder type={data.resource_type} documents={data.documents} />
+  <div class="drawer">
+    <div class="wrapper">
+      <label>{data.category}</label>
+      <div class="handle"></div>
     </div>
-  {/if}
-
-  <!-- Bottom (Placeholder) Drawer -->
-  <div class="bottom-drawer">
-    <em>Drawer 2 (coming soon)</em>
+    <div class="files">
+      <span>{data.resource_type}</span>
+    </div>
   </div>
 </div>
 
 
 <style>
+  * {
+    box-sizing: border-box;
+  }
+
   .cabinet {
-    background: #d9d9d9;
-    border: 4px solid #333;
-    border-radius: 6px;
-    width: 320px;
-    padding: 1rem;
-    box-shadow: inset 0 0 0 2px #999;
+    background-color: #202020;
+    width: 250px;
+    height: 400px;
+    padding: 10px;
+    margin: 80px auto;
+    border-radius: 3px;
   }
 
   .drawer {
-    background: #ccc;
-    border: 2px solid #444;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    cursor: pointer;
     position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: background 0.3s;
+    width: 100%;
+    height: 50%;
+    border: 2px solid #000000;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #828282 0%, #202020 40%);
+    background-size: 100%;
+    transition: all 1s;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    z-index: 1;
   }
 
   .drawer:hover {
-    background: #bbb;
+    background-size: 200%;
+    transform: scale(1.15);
+    z-index: 2;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);
+  }
+
+  .drawer:hover .files {
+    display: block;
+    height: 25px;
+    top: -27px;
+  }
+
+  .wrapper {
+    margin: 0 auto;
+    top: 50%;
+    transform: translateY(-50%);
+    position: relative;
+    width: 60px;
+  }
+
+  label {
+    display: block;
+    width: 75%;
+    height: 30px;
+    border: 2px solid #dddddd;
+    margin: 0 auto 30px auto;
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 1);
   }
 
   .handle {
-    width: 32px;
-    height: 16px;
-    background: #aaa;
-    border: 2px solid #222;
-    border-radius: 2px;
+    display: block;
+    position: relative;
+    background: linear-gradient(to bottom, #dddddd 0%, #5e5e5e 100%);
+    width: 100%;
+    height: 7px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
   }
 
-  .folder-container {
-    margin-top: 0.75rem;
-    padding-left: 1rem;
+  .files {
+    position: absolute;
+    background-color: beige;
+    width: 95%;
+    height: 0;
+    left: 0;
+    right: 0;
+    top: -2px;
+    margin: auto;
+    box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 1s;
+    display: none;
   }
 
-  .bottom-drawer {
-    background: #b4b4b4;
-    border: 2px solid #444;
-    padding: 1rem;
-    opacity: 0.6;
+  .files::before,
+  .files::after {
+    position: absolute;
+    top: -10px;
+    height: 10px;
+    width: 50%;
+    box-shadow: -1px -2px 5px rgba(0, 0, 0, 0.2);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    content: "";
+  }
+
+  .files::before {
+    background-color: beige;
+    left: 0;
+  }
+
+  .files::after {
+    background-color: #e5e5c8; /* approximate of darken(beige, 10%) */
+    right: 0;
   }
 </style>
