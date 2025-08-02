@@ -1,5 +1,5 @@
 <script>
-  // Normally you'd pass in props, but we're hardcoding for now
+  export let doc;
 </script>
 
 <style>
@@ -8,15 +8,30 @@
     border: 1px solid #999;
     padding: 1rem;
     box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
   }
 
   .document h2 {
     margin-top: 0;
+    font-size: 1rem;
+  }
+
+  .document p {
+    margin: 0.5rem 0;
+  }
+
+  .document a {
+    color: #0077cc;
+    text-decoration: none;
+  }
+
+  .document a:hover {
+    text-decoration: underline;
   }
 </style>
 
 <div class="document">
-  <h2>U.S. Trade Memorandum, 1985</h2>
-  <p><strong>Summary:</strong> This document outlines trade relations and resource allocation policies.</p>
-  <p><a href="#">Read full document</a></p>
+  <h2>{doc.title}</h2>
+  <p><strong>Summary:</strong> {doc.summary}</p>
+  <p><a href={doc.url} target="_blank" rel="noopener">Read full document</a></p>
 </div>

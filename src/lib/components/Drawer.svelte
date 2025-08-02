@@ -1,5 +1,6 @@
 <script>
   import Folder from './Folder.svelte';
+  export let data;
 
   let isOpen = false;
 </script>
@@ -12,6 +13,11 @@
     padding: 1rem;
     cursor: pointer;
     margin-bottom: 1rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .drawer:hover {
+    background-color: #bbb;
   }
 
   .folder-container {
@@ -21,11 +27,11 @@
 </style>
 
 <div class="drawer" on:click={() => isOpen = !isOpen}>
-  <strong>Category A</strong>
+  <strong>{data.category}</strong>
 </div>
 
 {#if isOpen}
   <div class="folder-container">
-    <Folder />
+    <Folder type={data.resource_type} documents={data.documents} />
   </div>
 {/if}

@@ -1,5 +1,8 @@
 <script>
   import DocumentDetails from './DocumentDetails.svelte';
+  export let type;
+  export let documents = [];
+
   let isOpen = false;
 </script>
 
@@ -9,6 +12,11 @@
     background-color: #eee;
     padding: 0.75rem;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .folder:hover {
+    background-color: #ddd;
   }
 
   .document-container {
@@ -18,11 +26,13 @@
 </style>
 
 <div class="folder" on:click={() => isOpen = !isOpen}>
-  📁 Memorandum
+  📁 {type}
 </div>
 
 {#if isOpen}
   <div class="document-container">
-    <DocumentDetails />
+    {#each documents as doc}
+      <DocumentDetails doc={doc} />
+    {/each}
   </div>
 {/if}
