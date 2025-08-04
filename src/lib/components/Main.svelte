@@ -82,7 +82,7 @@
     />
     <div class="folder-area" style="--folder-width: 45%;">
       <div class="category-details-wrapper">
-        {#if activeDrawer !== null}
+        {#if activeDrawer !== null && categoryData.length > 0}
           <CategoryDetails
             category={categoryDescriptions[activeDrawer].label}
             full_name={categoryDescriptions[activeDrawer].full_name}
