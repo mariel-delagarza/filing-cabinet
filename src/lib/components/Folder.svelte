@@ -19,7 +19,7 @@
   .folder {
     position: relative;
     width: 30rem;
-    height: 12rem;
+    height: 100%;
     background-image: url("/src/assets/light_wood.jpeg");
     background-size: cover;
     background-position: center;
