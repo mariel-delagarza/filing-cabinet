@@ -60,7 +60,7 @@
     font-family: "Special Elite", serif;
     font-size: 1rem;
     width: calc(var(--folder-width));
-    margin-left: 2rem;
+    margin-left: 4rem;
     margin-top: 4rem;
     line-height: 1.7;
   }
