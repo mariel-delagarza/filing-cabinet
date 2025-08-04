@@ -4,22 +4,25 @@
   export let startDate;
   export let endDate;
   export let tags = [];
+  export let title = "";
 
   $: if (tags.length) {
     console.log("Tags:", tags);
   }
-
 </script>
 
 <div class="post-it">
-  <p class="text">{text}</p>
+  <p class="text" id="title">{title}</p>
+  {#if text}
+    <p class="text">{text}</p>
+  {/if}
   {#if startDate}
-    <p class="text">Oldest Date:<br> {startDate}</p>
+    <p class="text">Oldest Date:<br /> {startDate}</p>
   {/if}
   {#if endDate}
-    <p class="text">Latest Date:<br> {endDate}</p>
+    <p class="text">Latest Date:<br /> {endDate}</p>
   {/if}
-  {#if (tags.length)}
+  {#if tags.length}
     {#each tags as tag}
       <p class="tag">{tag},</p>
     {/each}
@@ -54,5 +57,13 @@
     font-size: 1rem;
     line-height: 1.5;
     transform: rotate(2deg);
+  }
+
+  #title {
+    text-shadow:
+      0.5px 0,
+      0 -0.5px,
+      -0.5px 0,
+      0 0.5px;
   }
 </style>

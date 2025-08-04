@@ -77,7 +77,7 @@
         <PostIt startDate={formattedStartDate} endDate={formattedEndDate} />
       </div>
       <div id="postit-2">
-        <PostIt tags={sortedTags.slice(0, 6)} />
+        <PostIt title="Tags:" tags={sortedTags.slice(0, 6)} />
         {#if sortedTags.length > 6}
           <PostIt tags={sortedTags.slice(6, 15)} />
         {/if}
