@@ -37,6 +37,15 @@
     background: #d2d0d0;
   }
 
+  :global {
+    @font-face {
+      font-family: "Impact Label";
+      src: url("/src/lib/assets/impactLabel.ttf") format("truetype");
+      font-weight: normal;
+      font-style: normal;
+    }
+  }
+
   h1 {
     height: 60px;
     margin: 0;

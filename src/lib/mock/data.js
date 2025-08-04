@@ -102,7 +102,7 @@ export const mockData = [
     ],
   },
   {
-    category: "PNIs",
+    category: "PNI's",
     resource_type: "Memorandum",
     documents: [
       {

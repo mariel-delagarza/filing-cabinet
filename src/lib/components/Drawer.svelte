@@ -7,7 +7,7 @@
 <div class="drawer">
   <div class="wrapper">
     <div class="drawer-label">
-      <span>{category}</span>
+      <span id="drawer-label-text">{category}</span>
     </div>
     <div class="drawer-handle"></div>
   </div>
@@ -43,14 +43,30 @@
   }
 
   .drawer-label {
-    color: white;
     text-align: center;
-    display: block;
-    width: 90%;
-    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    padding: 0.25rem 0; /* optional: add top/bottom breathing room */
+
     border: 2px solid #dddddd;
     margin: 0 auto 30px auto;
     box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 1);
+  }
+
+  #drawer-label-text {
+    font-family: "Impact Label", sans-serif;
+    background: #111;
+    color: white;
+    /* padding: 0.25rem 0.5rem; */
+    font-size: 2.25rem;
+    line-height: 1;
+    display: inline-block;
+    transform: rotate(-1deg);
+    /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4); */
+    filter: invert(1) brightness(1.5); /* Key */
   }
 
   .drawer-handle {
@@ -67,7 +83,7 @@
     top: 50%;
     transform: translateY(-50%);
     position: relative;
-    width: 60px;
+    width: 120px;
   }
 
   .files {
