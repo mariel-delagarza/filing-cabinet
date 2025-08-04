@@ -16,8 +16,6 @@
   <img src="/assets/logo.svg" alt="Site Header" class="site-header__logo" />
 </header>
 <div class="wrapper">
-  <h1>Filing Cabinet MVP</h1>
-
   <div class="main">
     <Cabinet />
     <div class="folder-area">
@@ -60,13 +58,6 @@
     padding: 1rem 2rem;
     /* border-bottom: 1px solid #826022; */
     font-family: "IBM Plex Sans", sans-serif;
-  }
-
-  h1 {
-    height: 60px;
-    margin: 0;
-    padding: 1rem;
-    flex-shrink: 0;
   }
   .wrapper {
     /* max-width: 1900px; */
