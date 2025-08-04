@@ -5,12 +5,30 @@
   export let data = [];
 
   console.log("CategoryDetails data:", data);
+
+  let totalDocuments = data.length;
+  console.log("Total documents:", totalDocuments);
+
+  let types = [...new Set(data.map((item) => item.type))];
+  console.log("Types of documents:", types);
+
+  let names = [
+    ...new Map(
+      data
+        .flatMap((item) => item.names || [])
+        .map((person) => [person.name.toLowerCase(), person]) // use name as key
+    ).values(),
+  ];
+  // let names = [...new Set(data.map((item) => item.names).flat())];
+  console.log("Names:", names);
 </script>
 
 <div class="category-details">
   <h2>{category}</h2>
   <h3>{full_name}</h3>
   <p>{description}</p>
+  <p>Total documents: {totalDocuments}</p>
+  <p>Types of documents: {types.join(", ")}</p>
 </div>
 
 <style>
