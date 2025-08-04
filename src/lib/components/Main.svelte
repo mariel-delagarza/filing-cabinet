@@ -2,6 +2,15 @@
   import Cabinet from "./Cabinet.svelte";
   import Folder from "./Folder.svelte";
   import CategoryDetails from "./CategoryDetails.svelte";
+  import getData from "$lib/data.js"; // adjust path if needed
+  import { onMount } from "svelte";
+
+  let parsedData = null;
+
+  onMount(async () => {
+    parsedData = await getData();
+    console.log("Parsed live data:", parsedData);
+  });
 
   let folders = [
     { id: 1, label: "Pre-Negotiation" },
