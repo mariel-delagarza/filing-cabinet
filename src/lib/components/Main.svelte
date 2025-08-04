@@ -105,6 +105,15 @@
 </div>
 
 <style>
+  :global(html) {
+    box-sizing: border-box;
+  }
+
+  :global(*),
+  :global(*::before),
+  :global(*::after) {
+    box-sizing: inherit;
+  }
   :global(body) {
     margin: 0;
     overflow: hidden;
@@ -121,20 +130,21 @@
   }
 
   .site-header {
+    box-sizing: border-box;
     position: sticky;
     top: 0;
     z-index: 999;
     width: 100%;
     background: #162140;
     color: white;
-    height: 60px;
+    height: 80px;
     padding: 1rem 2rem;
     /* border-bottom: 1px solid #826022; */
     font-family: "IBM Plex Sans", sans-serif;
   }
   .wrapper {
     /* max-width: 1900px; */
-    height: 100vh;
+    height: calc(100vh - 100px); /* subtract header height */
     /* margin: 0 auto; */
     padding: 1rem;
     box-sizing: border-box;
