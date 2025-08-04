@@ -18,6 +18,7 @@
   :global(body) {
     margin: 0;
     overflow: hidden;
+    background: #d2d0d0;
   }
 
   h1 {
