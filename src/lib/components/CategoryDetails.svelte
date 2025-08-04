@@ -11,14 +11,16 @@
   $: types = [...new Set(data.map((item) => item.type))];
 
   $: names = [
-  ...new Map(
-    data
-      .flatMap((item) => item.names || [])
-      .filter((person) => person.name && person.name.trim() !== "") // remove empty names
-      .map((person) => [person.name.toLowerCase(), person])
-  ).values(),
-];
-  console.log("Names:", names);
+    ...new Map(
+      data
+        .flatMap((item) => item.names || [])
+        .filter((person) => person.name && person.name.trim() !== "") // remove empty names
+        .map((person) => [person.name.toLowerCase(), person])
+    ).values(),
+  ];
+  $: if (names) {
+    console.log("Names:", names);
+  }
 </script>
 
 <div class="category-details">
@@ -27,26 +29,30 @@
     <p class="category-header__description">{description}</p>
   </div>
   <div class="category-content">
-    <p><span class="bold">Total documents:</span> {totalDocuments}</p>
-    <p><span class="bold">Types of documents:</span></p>
-    <ul>
-      {#each types as type}
-        <li>{type}</li>
-      {/each}
-    </ul>
-    <p><span class="bold">People involved:</span></p>
-    <ul>
-      {#each names
-        .slice() // create a copy so we don’t mutate the original
-        .sort((a, b) => a.name.localeCompare(b.name)) as person}
-        <li>{person.name}</li>
-      {/each}
-    </ul>
+    <div class="category-meta">
+      <p><span class="bold">Total documents:</span> {totalDocuments}</p>
+      <p><span class="bold">Types of documents:</span></p>
+      <ul>
+        {#each types as type}
+          <li>{type}</li>
+        {/each}
+      </ul>
+    </div>
+
+    <div class="category-people">
+      <p><span class="bold">People involved:</span></p>
+      <ul class="names-list">
+        {#each names
+          .slice() // create a copy so we don’t mutate the original
+          .sort((a, b) => a.name.localeCompare(b.name)) as person}
+          <li>{person.name}</li>
+        {/each}
+      </ul>
+    </div>
   </div>
 </div>
 
 <style>
-
   .category-details {
     display: flex;
     flex-direction: column;
@@ -87,5 +93,37 @@
   .category-content {
     flex: 1;
     overflow: hidden;
+    flex-direction: column;
+    height: 100%;
+    display: flex;
+  }
+
+  .names-list {
+    columns: 2; /* creates two columns */
+    column-gap: 2rem; /* space between the columns */
+    padding-left: 1rem; /* optional: indent */
+    margin: 0;
+  }
+
+  .names-list li {
+    break-inside: avoid; /* keeps list items from breaking across columns */
+    margin-bottom: 0.25rem;
+  }
+
+  @media (max-width: 600px) {
+    .names-list {
+      columns: 1;
+    }
+  }
+
+  .category-meta {
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .category-people {
+    flex-grow: 0;
+    flex-shrink: 0;
+    height: 60%;
   }
 </style>
