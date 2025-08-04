@@ -24,14 +24,27 @@
 </script>
 
 <div class="category-details">
-  <h2>{category}</h2>
-  <h3>{full_name}</h3>
-  <p>{description}</p>
-  <p>Total documents: {totalDocuments}</p>
-  <p>Types of documents: {types.join(", ")}</p>
+  <div class="category-header">
+    <h2 class="bold">{category}</h2>
+    <h3>{full_name}</h3>
+    <p>{description}</p>
+  </div>
+  <div class="category-content">
+    <p><span class="bold">Total documents:</span> {totalDocuments}</p>
+    <p><span class="bold">Types of documents:</span></p>
+    <ul>
+      {#each types as type}
+        <li>{type}</li>
+      {/each}
+    </ul>
+  </div>
 </div>
 
 <style>
+  .category-header {
+    margin-bottom: 20px;
+  }
+
   .category-details {
     background-image: url("../assets/oldpaper.jpg");
     background-size: cover;
@@ -39,23 +52,26 @@
     padding: 1rem;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     font-family: "Special Elite", serif;
+    font-size: 1.25rem;
     width: calc(var(--folder-width));
     margin-left: 2rem;
     margin-top: 4rem;
     line-height: 1.7;
   }
 
-  h2 {
+  .bold {
+    text-shadow:
+      0.5px 0,
+      0 -0.5px,
+      -0.5px 0,
+      0 0.5px;
+  }
+
+  .category-details h2 {
     font-size: 1.5rem;
     margin: 0;
   }
-
   h3 {
-    margin: 0;
-  }
-
-  p {
-    font-size: 1rem;
     margin: 0;
   }
 </style>
