@@ -33,6 +33,9 @@
 ];
 
 $: sortedTags = tags.slice().sort((a, b) => a.localeCompare(b));
+$: if (sortedTags) {
+  console.log("Sorted Tags:", sortedTags);
+}
 $: dates = data
   .map((item) => new Date(item.date))
   .filter((date) => !isNaN(date)); // remove invalid dates
