@@ -12,6 +12,9 @@
   let activeId = null;
 </script>
 
+<header class="site-header">
+  <img src="/assets/logo.svg" alt="Site Header" class="site-header__logo" />
+</header>
 <div class="wrapper">
   <h1>Filing Cabinet MVP</h1>
 
@@ -40,10 +43,23 @@
   :global {
     @font-face {
       font-family: "Impact Label";
-      src: url("/src/lib/assets/impactLabel.ttf") format("truetype");
+      src: url("/assets/impactLabel.ttf") format("truetype");
       font-weight: normal;
       font-style: normal;
     }
+  }
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+    background: #162140;
+    color: white;
+    height: 60px;
+    padding: 1rem 2rem;
+    /* border-bottom: 1px solid #826022; */
+    font-family: "IBM Plex Sans", sans-serif;
   }
 
   h1 {
