@@ -23,9 +23,8 @@
 
 <div class="category-details">
   <div class="category-header">
-    <h2 class="bold">{category}</h2>
-    <h3>{full_name}</h3>
-    <p>{description}</p>
+    <h2 class="bold">{full_name}</h2>
+    <p class="category-header__description">{description}</p>
   </div>
   <div class="category-content">
     <p><span class="bold">Total documents:</span> {totalDocuments}</p>
@@ -79,10 +78,12 @@
     font-size: 1.5rem;
     margin: 0;
   }
-  h3 {
-    margin: 0;
-  }
 
+  .category-header__description {
+    font-size: 1.2rem;
+    margin: 0;
+    color: #333;
+  }
   .category-content {
     flex: 1;
     overflow: hidden;
