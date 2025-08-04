@@ -9,7 +9,7 @@
 
   <!-- Stack of tabs poking out from the right side -->
   {#each phases as label, i}
-    <div class="tab" style="top: {`${i * 8}rem`}">
+    <div class="tab" style="top: {`${i * 9}rem`}">
       {label}
     </div>
   {/each}
@@ -44,7 +44,7 @@
     outline: 0.5px solid #ccc;
     border-radius: 0 0.5rem 0.5rem 0;
     padding: 1rem 0.5rem;
-    font-size: 0.75rem;
+    font-size: 1rem;
     font-weight: bold;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
     z-index: 0;
