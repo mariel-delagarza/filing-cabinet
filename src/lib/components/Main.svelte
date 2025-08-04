@@ -2,12 +2,11 @@
   import Cabinet from "./Cabinet.svelte";
   import Folder from "./Folder.svelte";
 
-
   let folders = [
     { id: 1, label: "Pre-Negotiation" },
     { id: 2, label: "Negotiation" },
     { id: 3, label: "Implementation" },
-    { id: 4, label: "Dispute Resolution" }
+    { id: 4, label: "Dispute Resolution" },
   ];
 
   let activeId = null;
@@ -19,13 +18,14 @@
   <div class="main">
     <Cabinet />
     <div class="folder-area">
-      {#each folders as folder}
-        <Folder
-          label={folder.label}
-          isOpen={folder.id === activeId}
-          on:click={() => (activeId = folder.id)}
-        />
-      {/each}
+      <Folder
+        phases={[
+          "Pre-Negotiation",
+          "Negotiation",
+          "Implementation",
+          "Dispute Resolution",
+        ]}
+      />
     </div>
   </div>
 </div>
