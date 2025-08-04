@@ -1,5 +1,6 @@
 <script>
-  export let category;
+  import PostIt from "./PostIt.svelte";
+  // export let category;
   export let description;
   export let full_name;
   export let data = [];
@@ -28,6 +29,7 @@
     <h2 class="bold">{full_name}</h2>
     <p class="category-header__description">{description}</p>
   </div>
+
   <div class="category-content">
     <div class="category-meta">
       <p><span class="bold">Total documents:</span> {totalDocuments}</p>
@@ -37,6 +39,9 @@
           <li>{type}</li>
         {/each}
       </ul>
+    </div>
+    <div class="postit-wrapper">
+      <PostIt text="START includes START I, START II, and New START." />
     </div>
 
     <div class="category-people">
@@ -70,6 +75,7 @@
     line-height: 1.7;
     height: 100%;
     overflow: hidden;
+    position: relative;
   }
 
   .bold {
@@ -125,5 +131,12 @@
     flex-grow: 0;
     flex-shrink: 0;
     height: 60%;
+  }
+
+  .postit-wrapper {
+    position: absolute;
+    top: 7rem;
+    right: 8rem;
+    z-index: 5;
   }
 </style>
