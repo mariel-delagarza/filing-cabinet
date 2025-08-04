@@ -42,11 +42,16 @@
     width: calc(var(--folder-width));
     margin-left: 2rem;
     margin-top: 4rem;
+    line-height: 1.7;
   }
 
   h2 {
     font-size: 1.5rem;
-    margin: 0 0 0.5rem 0;
+    margin: 0;
+  }
+
+  h3 {
+    margin: 0;
   }
 
   p {
