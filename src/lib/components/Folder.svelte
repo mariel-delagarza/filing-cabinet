@@ -28,7 +28,7 @@
   /* Tab bar with horizontal tabs */
   .tab-bar {
     position: absolute;
-    right: -2.1rem; /* offset to the right of folder */
+    right: -2.7rem; /* offset to the right of folder */
     top: 0;
     display: flex;
     flex-direction: column;
@@ -41,7 +41,8 @@
     background: #fdfadd;
     border-radius: 0 0.5rem 0.5rem 0;
     padding: 1rem 0.5rem;
-    font-size: 1rem;
+    font-size: 1.7rem;
+    font-family: "Impact Label", sans-serif;
     font-weight: bold;
     cursor: pointer;
     text-align: center;
