@@ -24,40 +24,36 @@
   }
 
   $: tags = [
-  ...new Set(
-    data
-      .flatMap((item) => item.content_tags || []) // flatten all tags into one array
-      .map((tag) => tag.trim())
-      .filter((tag) => tag !== "") // remove empty strings
-  )
-];
+    ...new Set(
+      data
+        .flatMap((item) => item.content_tags || []) // flatten all tags into one array
+        .map((tag) => tag.trim())
+        .filter((tag) => tag !== "") // remove empty strings
+    ),
+  ];
 
-$: sortedTags = tags.slice().sort((a, b) => a.localeCompare(b));
-$: if (sortedTags) {
-  console.log("Sorted Tags:", sortedTags);
-}
-$: dates = data
-  .map((item) => new Date(item.date))
-  .filter((date) => !isNaN(date)); // remove invalid dates
+  $: sortedTags = tags.slice().sort((a, b) => a.localeCompare(b));
+  $: if (sortedTags) {
+    console.log("Sorted Tags:", sortedTags);
+  }
+  $: dates = data
+    .map((item) => new Date(item.date))
+    .filter((date) => !isNaN(date)); // remove invalid dates
 
-$: earliestDate = dates.length
-  ? new Date(Math.min(...dates))
-  : null;
+  $: earliestDate = dates.length ? new Date(Math.min(...dates)) : null;
 
-$: latestDate = dates.length
-  ? new Date(Math.max(...dates))
-  : null;
+  $: latestDate = dates.length ? new Date(Math.max(...dates)) : null;
 
-function formatDate(date) {
-  return date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-}
+  function formatDate(date) {
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+  }
 
-$: formattedStartDate = formatDate(earliestDate);
-$: formattedEndDate = formatDate(latestDate);
+  $: formattedStartDate = formatDate(earliestDate);
+  $: formattedEndDate = formatDate(latestDate);
 </script>
 
 <div class="category-details">
@@ -77,7 +73,15 @@ $: formattedEndDate = formatDate(latestDate);
       </ul>
     </div>
     <div class="postit-wrapper">
-      <PostIt text="" startDate={formattedStartDate} endDate={formattedEndDate} />
+      <div id="postit-1">
+        <PostIt startDate={formattedStartDate} endDate={formattedEndDate} />
+      </div>
+      <div id="postit-2">
+        <PostIt tags={sortedTags.slice(0, 6)} />
+        {#if sortedTags.length > 6}
+          <PostIt tags={sortedTags.slice(6, 15)} />
+        {/if}
+      </div>
     </div>
 
     <div class="category-people">
@@ -145,6 +149,7 @@ $: formattedEndDate = formatDate(latestDate);
     column-gap: 2rem; /* space between the columns */
     padding-left: 1rem; /* optional: indent */
     margin: 0;
+    max-width: 60%;
   }
 
   .names-list li {
@@ -172,7 +177,22 @@ $: formattedEndDate = formatDate(latestDate);
   .postit-wrapper {
     position: absolute;
     top: 7rem;
-    right: 8rem;
+    right: 0;
     z-index: 5;
+  }
+
+  #postit-1 {
+    position: absolute;
+    top: 0;
+    right: 12rem;
+    transform: rotate(2deg);
+  }
+  #postit-2 {
+    position: absolute;
+    /* top: 0;
+    left: 0; */
+    top: 17rem;
+    right: 0;
+    transform: rotate(-4deg);
   }
 </style>
