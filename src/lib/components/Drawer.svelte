@@ -29,7 +29,7 @@
     width: 250px;
     height: 400px;
     padding: 10px;
-    margin: 80px auto;
+    /* margin: 80px auto; */
     border-radius: 3px;
   }
 
