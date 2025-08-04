@@ -20,9 +20,10 @@
   .folder {
     position: relative;
     width: 40%;
-    height: 100%;
+    height: 90%;
     background: linear-gradient(to left, #fdfadd 80%, #cfc7a0 100%);
     z-index: 2;
+    margin-top: 2rem;
   }
 
   /* Tab bar with horizontal tabs */
