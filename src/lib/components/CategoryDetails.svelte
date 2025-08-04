@@ -52,6 +52,9 @@
   }
 
   .category-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     background-image: url("../assets/oldpaper.jpg");
     background-size: cover;
     background-position: center;
@@ -63,6 +66,8 @@
     margin-left: 4rem;
     margin-top: 4rem;
     line-height: 1.7;
+    height: 100%;
+    overflow: hidden;
   }
 
   .bold {
@@ -79,5 +84,10 @@
   }
   h3 {
     margin: 0;
+  }
+
+  .category-content {
+    flex: 1;
+    overflow: hidden;
   }
 </style>

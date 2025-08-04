@@ -57,7 +57,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 50px;
+    height: 65px;
     padding: 0.25rem 0; /* optional: add top/bottom breathing room */
 
     border: 2px solid #dddddd;

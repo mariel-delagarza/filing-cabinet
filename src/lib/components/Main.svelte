@@ -175,6 +175,7 @@
     z-index: 10; /* ensure it sits *above* the folder visually */
     pointer-events: none; /* so it doesn’t block folder clicks */
     width: 80%;
+    height: 87%;
     left: 0;
   }
 
