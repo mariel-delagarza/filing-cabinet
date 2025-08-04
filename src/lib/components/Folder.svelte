@@ -1,57 +1,52 @@
 <script>
-  export let phases = []; // an array of labels
+  export let phases = []; // an array of strings
 </script>
 
 <div class="folder">
-  <div class="body">
-    <!-- This is the visible open folder -->
+  <div class="tab-bar">
+    {#each phases as label}
+      <div class="tab">
+        {label}
+      </div>
+    {/each}
   </div>
 
-  <!-- Stack of tabs poking out from the right side -->
-  {#each phases as label, i}
-    <div class="tab" style="top: calc(var(--tab-height) * {i})">
-      {label}
-    </div>
-  {/each}
+  <div class="body">
+    <!-- folder content goes here -->
+  </div>
 </div>
 
 <style>
-  :root {
-    --tab-height: 9rem; /* adjust this if you want tighter or looser spacing */
-  }
-  .folder {
-    position: relative;
-    width: 45%;
-    height: 100%;
-    background-image: url("/src/assets/light_wood.jpeg");
-    background-size: cover;
-    background-position: center;
-    background-color: beige;
-    margin-bottom: 2rem;
-    
-  }
+.folder {
+  position: relative;
+  width: 45%;
+  height: 100%;
+  background-image: url("/src/assets/light_wood.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-color: beige;
+  z-index: 2;
+}
 
-  /* Folder body */
-  .body {
-    width: 100%;
-    height: 100%;
-  }
+/* Tab bar with horizontal tabs */
+.tab-bar {
+  position: absolute;
+  right: -2.1rem; /* offset to the right of folder */
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
 
-  /* Folder tabs stacked on the right */
-  .tab {
-    position: absolute;
-    right: -2.5rem;
-    width: 1.5rem;
-    height: var(--tab-height);
-    writing-mode: vertical-rl;
-    background: #fdfadd;
-    outline: 0.5px solid #ccc;
-    border-radius: 0 0.5rem 0.5rem 0;
-    padding: 1rem 0.5rem;
-    font-size: 1rem;
-    font-weight: bold;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
-    z-index: 0;
-    cursor: pointer;
-  }
+/* Individual tabs */
+.tab {
+  writing-mode: vertical-rl;
+  background: #fdfadd;
+  border-radius: 0 0.5rem 0.5rem 0;
+  padding: 1rem 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+}
 </style>
