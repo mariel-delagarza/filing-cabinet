@@ -9,7 +9,11 @@
     { id: 4, label: "Dispute Resolution" },
   ];
 
-  let activeId = null;
+  let activeDrawer = null;
+
+  function handleDrawerClick(id) {
+    activeDrawer = activeDrawer === id ? null : id;
+  }
 </script>
 
 <header class="site-header">
@@ -17,7 +21,10 @@
 </header>
 <div class="wrapper">
   <div class="main">
-    <Cabinet />
+    <Cabinet
+      on:drawerClick={(e) => handleDrawerClick(e.detail)}
+      {activeDrawer}
+    />
     <div class="folder-area">
       <Folder
         phases={[

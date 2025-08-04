@@ -1,11 +1,24 @@
 <script>
   import Drawer from "./Drawer.svelte";
   import { mockData } from "$lib/mock/data.js";
+  import { createEventDispatcher } from "svelte";
+
+  export let activeDrawer;
+  const dispatch = createEventDispatcher();
+
+  function handleDrawerClick(index) {
+    dispatch("drawerClick", index); // this is what Main is listening for
+  }
 </script>
 
 <div class="cabinet">
   {#each mockData as item, index}
-    <Drawer category={item.category} documents={item.documents} />
+    <Drawer
+      category={item.category}
+      id={index}
+      isActive={activeDrawer === index}
+      on:click={() => handleDrawerClick(index)}
+    />
   {/each}
 </div>
 

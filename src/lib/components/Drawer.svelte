@@ -1,10 +1,19 @@
 <script>
   export let category;
-
+  export let isActive = false;
+  export let id;
   let selectedId = null;
+
+  // Dispatch click upward
+  import { createEventDispatcher } from "svelte";
+  const dispatch = createEventDispatcher();
+
+  function handleClick() {
+    dispatch("click", id);
+  }
 </script>
 
-<div class="drawer">
+<div class="drawer {isActive ? 'open' : ''}" on:click={handleClick}>
   <div class="wrapper">
     <div class="drawer-label">
       <span id="drawer-label-text">{category}</span>
@@ -27,16 +36,16 @@
     transition: all 1s;
     box-shadow: 0 0 0 rgba(0, 0, 0, 0);
     z-index: 1;
-  }
+  } 
 
-  .drawer:hover {
+  .drawer.open {
     background-size: 200%;
     transform: scale(1.15);
     z-index: 2;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);
   }
 
-  .drawer:hover .files {
+  .drawer.open .files {
     display: block;
     height: 25px;
     top: -27px;
