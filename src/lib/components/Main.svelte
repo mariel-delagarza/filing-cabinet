@@ -1,6 +1,7 @@
 <script>
   import Cabinet from "./Cabinet.svelte";
   import Folder from "./Folder.svelte";
+  import CategoryDetails from "./CategoryDetails.svelte";
 
   let folders = [
     { id: 1, label: "Pre-Negotiation" },
@@ -14,6 +15,29 @@
   function handleDrawerClick(id) {
     activeDrawer = activeDrawer === id ? null : id;
   }
+
+  const categoryDescriptions = [
+    {
+      label: "BWC",
+      description: "Biological Weapons Convention materials and related files.",
+    },
+    {
+      label: "CWC",
+      description: "Chemical Weapons Convention agreements and notes.",
+    },
+    {
+      label: "INF",
+      description: "Intermediate-Range Nuclear Forces Treaty documents.",
+    },
+    {
+      label: "PNI'S",
+      description: "Presidential Nuclear Initiatives records.",
+    },
+    {
+      label: "START",
+      description: "Strategic Arms Reduction Treaty files.",
+    },
+  ];
 </script>
 
 <header class="site-header">
@@ -25,7 +49,16 @@
       on:drawerClick={(e) => handleDrawerClick(e.detail)}
       {activeDrawer}
     />
-    <div class="folder-area">
+    <div class="folder-area" style="--folder-width: 45%;">
+      <div class="category-details-wrapper">
+        {#if activeDrawer !== null}
+          <CategoryDetails
+            category={categoryDescriptions[activeDrawer].label}
+            description={categoryDescriptions[activeDrawer].description}
+          />
+        {/if}
+      </div>
+
       <Folder
         phases={[
           "Pre-Negotiation",
@@ -84,6 +117,7 @@
   }
 
   .folder-area {
+    position: relative;
     background-image: url("../assets/dark_wood.jpeg");
     background-size: cover;
     background-position: center;
@@ -91,6 +125,14 @@
     overflow-y: auto;
     padding: 1rem;
     box-sizing: border-box;
+  }
+
+  .category-details-wrapper {
+    position: absolute;
+    z-index: 10; /* ensure it sits *above* the folder visually */
+    pointer-events: none; /* so it doesn’t block folder clicks */
+    width: 80%;
+    left: 0;
   }
 
   @media (max-width: 900px) {
