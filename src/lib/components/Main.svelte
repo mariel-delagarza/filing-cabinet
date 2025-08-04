@@ -1,6 +1,16 @@
 <script>
   import Cabinet from "./Cabinet.svelte";
   import Folder from "./Folder.svelte";
+
+
+  let folders = [
+    { id: 1, label: "Pre-Negotiation" },
+    { id: 2, label: "Negotiation" },
+    { id: 3, label: "Implementation" },
+    { id: 4, label: "Dispute Resolution" }
+  ];
+
+  let activeId = null;
 </script>
 
 <div class="wrapper">
@@ -9,7 +19,13 @@
   <div class="main">
     <Cabinet />
     <div class="folder-area">
-      <Folder/>
+      {#each folders as folder}
+        <Folder
+          label={folder.label}
+          isOpen={folder.id === activeId}
+          on:click={() => (activeId = folder.id)}
+        />
+      {/each}
     </div>
   </div>
 </div>
@@ -45,7 +61,7 @@
   }
 
   .folder-area {
-    background-image: url('../assets/dark_wood.jpeg');
+    background-image: url("../assets/dark_wood.jpeg");
     background-size: cover;
     background-position: center;
     flex: 1;
