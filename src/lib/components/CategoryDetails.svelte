@@ -37,7 +37,9 @@
     </ul>
     <p><span class="bold">People involved:</span></p>
     <ul>
-      {#each names as person}
+      {#each names
+        .slice() // create a copy so we don’t mutate the original
+        .sort((a, b) => a.name.localeCompare(b.name)) as person}
         <li>{person.name}</li>
       {/each}
     </ul>
