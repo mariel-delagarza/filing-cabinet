@@ -77,6 +77,7 @@
 <div class="wrapper">
   <div class="main">
     <Cabinet
+      categories={categoryDescriptions}
       on:drawerClick={(e) => handleDrawerClick(e.detail)}
       {activeDrawer}
     />

@@ -2,6 +2,7 @@
   import Drawer from "./Drawer.svelte";
   import { mockData } from "$lib/mock/data.js";
   import { createEventDispatcher } from "svelte";
+  export let categories = [];
 
   export let activeDrawer;
   const dispatch = createEventDispatcher();
@@ -12,9 +13,9 @@
 </script>
 
 <div class="cabinet">
-  {#each mockData as item, index}
+  {#each categories as category, index}
     <Drawer
-      category={item.category}
+      category={category.label}
       id={index}
       isActive={activeDrawer === index}
       on:click={() => handleDrawerClick(index)}
