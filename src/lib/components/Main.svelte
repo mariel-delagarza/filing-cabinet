@@ -83,6 +83,15 @@
 <header class="site-header">
   <img src="/assets/logo.svg" alt="Site Header" class="site-header__logo" />
 </header>
+<section class="hero">
+  <div class="hero__content">
+    <h1>Arms Control Treaty Archive</h1>
+    <p>
+      A historical record of major multilateral and bilateral arms control
+      agreements.
+    </p>
+  </div>
+</section>
 <div class="wrapper">
   <div class="main">
     <Cabinet
@@ -126,7 +135,7 @@
   }
   :global(body) {
     margin: 0;
-    overflow: hidden;
+    /* overflow: hidden; */
     background: #d2d0d0;
   }
 
@@ -154,7 +163,7 @@
   }
   .wrapper {
     /* max-width: 1900px; */
-    height: calc(100vh - 100px); /* subtract header height */
+    height: calc(100vh - 100px);
     /* margin: 0 auto; */
     padding: 1rem;
     box-sizing: border-box;
@@ -197,5 +206,38 @@
     .folder-area {
       width: 100%;
     }
+  }
+
+  /* ------------------------ Hero ------------------------ */
+  .hero {
+    height: 100vh;
+    background-image: url("../assets/cover.jpg");
+    background-size: cover;
+    background-position: center;
+    color: black;
+    padding: 4rem 2rem;
+    text-align: center;
+    font-family: "Impact Label", sans-serif;
+    box-shadow: inset 0 -3px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center; /* vertically center content */
+    justify-content: center; /* horizontally center content */
+  }
+
+  .hero__content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .hero h1 {
+    font-size: 7rem;
+    margin-bottom: 3rem;
+    line-height: 1.5;
+  }
+
+  .hero p {
+    font-size: 3.25rem;
+    margin: 0;
+    line-height: 1.5;
   }
 </style>
