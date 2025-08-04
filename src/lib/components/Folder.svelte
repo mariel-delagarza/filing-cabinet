@@ -9,13 +9,16 @@
 
   <!-- Stack of tabs poking out from the right side -->
   {#each phases as label, i}
-    <div class="tab" style="top: {`${i * 9}rem`}">
+    <div class="tab" style="top: calc(var(--tab-height) * {i})">
       {label}
     </div>
   {/each}
 </div>
 
 <style>
+  :root {
+    --tab-height: 9rem; /* adjust this if you want tighter or looser spacing */
+  }
   .folder {
     position: relative;
     width: 45%;
@@ -25,7 +28,7 @@
     background-position: center;
     background-color: beige;
     margin-bottom: 2rem;
-    z-index: 2;
+    
   }
 
   /* Folder body */
@@ -39,6 +42,7 @@
     position: absolute;
     right: -2.5rem;
     width: 1.5rem;
+    height: var(--tab-height);
     writing-mode: vertical-rl;
     background: #fdfadd;
     outline: 0.5px solid #ccc;
