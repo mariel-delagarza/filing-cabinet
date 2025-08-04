@@ -10,14 +10,14 @@
 
   $: types = [...new Set(data.map((item) => item.type))];
 
-  let names = [
-    ...new Map(
-      data
-        .flatMap((item) => item.names || [])
-        .map((person) => [person.name.toLowerCase(), person]) // use name as key
-    ).values(),
-  ];
-  // let names = [...new Set(data.map((item) => item.names).flat())];
+  $: names = [
+  ...new Map(
+    data
+      .flatMap((item) => item.names || [])
+      .filter((person) => person.name && person.name.trim() !== "") // remove empty names
+      .map((person) => [person.name.toLowerCase(), person])
+  ).values(),
+];
   console.log("Names:", names);
 </script>
 
