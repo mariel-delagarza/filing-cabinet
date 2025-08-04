@@ -20,7 +20,7 @@
   ];
 
   $: selectedCategory =
-    activeDrawer !== null ? categoryDescriptions[activeDrawer]?.label : null;
+    activeDrawer !== null ? categoryDescriptions[activeDrawer]?.key : null;
 
   $: categoryData = selectedCategory
     ? rawData.filter(
@@ -43,27 +43,32 @@
 
   const categoryDescriptions = [
     {
+      key: "BWC",
       label: "BWC",
       full_name: "Biological Weapons Convention",
       description:
         "Materials and related files from the Biological Weapons Convention.",
     },
     {
+      key: "CWC",
       label: "CWC",
       full_name: "Chemical Weapons Convention",
       description: "Agreements and notes from the Chemical Weapons Convention.",
     },
     {
+      key: "INF",
       label: "INF",
       full_name: "Intermediate-Range Nuclear Forces Treaty",
       description: "Documents from the INF Treaty.",
     },
     {
+      key: "PNIs",
       label: "PNI'S",
       full_name: "Presidential Nuclear Initiatives",
       description: "Records from the Presidential Nuclear Initiatives.",
     },
     {
+      key: "START",
       label: "START",
       full_name: "Strategic Arms Reduction Treaty",
       description: "Files from the START agreements.",
