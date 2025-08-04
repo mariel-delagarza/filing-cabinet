@@ -2,7 +2,7 @@
   export let category;
   export let description;
   export let full_name;
-  export let data = []; 
+  export let data = [];
 
   console.log("CategoryDetails data:", data);
 </script>
@@ -15,12 +15,12 @@
 
 <style>
   .category-details {
-    background: #fffdf5;
-    border: 2px solid #ccc;
+    background-image: url("../assets/oldpaper.jpg");
+    background-size: cover;
+    background-position: center;
     padding: 1rem;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     font-family: "Special Elite", serif;
-    /* max-width: 500px; */
     width: calc(var(--folder-width));
     margin-left: 2rem;
     margin-top: 4rem;
