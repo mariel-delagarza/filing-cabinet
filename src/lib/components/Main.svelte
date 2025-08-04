@@ -20,19 +20,18 @@
   ];
 
   $: selectedCategory =
-    activeDrawer !== null ? categoryDescriptions[activeDrawer]?.key : null;
+    activeDrawer !== null ? categoryDescriptions[activeDrawer] : null;
 
   $: categoryData = selectedCategory
-    ? rawData.filter(
-        (d) =>
-          d.associated_agreement &&
-          d.associated_agreement
-            .split(";")
-            .some(
-              (val) =>
-                val.trim().toLowerCase() === selectedCategory.toLowerCase()
-            )
-      )
+    ? rawData.filter((d) => {
+        const agreementString = d.associated_agreement || "";
+        const values = agreementString
+          .split(";")
+          .map((v) => v.trim().toLowerCase());
+        return selectedCategory.aliases.some((alias) =>
+          values.includes(alias.toLowerCase())
+        );
+      })
     : [];
 
   let activeDrawer = null;
@@ -48,30 +47,35 @@
       full_name: "Biological Weapons Convention",
       description:
         "Materials and related files from the Biological Weapons Convention.",
+      aliases: ["BWC"],
     },
     {
       key: "CWC",
       label: "CWC",
       full_name: "Chemical Weapons Convention",
       description: "Agreements and notes from the Chemical Weapons Convention.",
+      aliases: ["CWC"],
     },
     {
       key: "INF",
       label: "INF",
       full_name: "Intermediate-Range Nuclear Forces Treaty",
       description: "Documents from the INF Treaty.",
+      aliases: ["INF"],
     },
     {
       key: "PNIs",
-      label: "PNI'S",
+      label: "PNI's",
       full_name: "Presidential Nuclear Initiatives",
       description: "Records from the Presidential Nuclear Initiatives.",
+      aliases: ["PNIs"],
     },
     {
       key: "START",
       label: "START",
       full_name: "Strategic Arms Reduction Treaty",
       description: "Files from the START agreements.",
+      aliases: ["START", "START 1", "START 2", "New START"], // <---
     },
   ];
 </script>
