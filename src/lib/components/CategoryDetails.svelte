@@ -47,9 +47,6 @@
 </div>
 
 <style>
-  .category-header {
-    margin-bottom: 20px;
-  }
 
   .category-details {
     display: flex;
