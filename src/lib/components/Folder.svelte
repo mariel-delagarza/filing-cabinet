@@ -1,38 +1,47 @@
-<script>
-  import DocumentDetails from './DocumentDetails.svelte';
-  export let type;
-  export let documents = [];
+<script lang="ts">
+  let folders = [
+    { id: 1, label: "Pre-Negotiation" },
+    { id: 2, label: "Negotiation" },
+    { id: 3, label: "Implementation" },
+    { id: 4, label: "Dispute Resolution" }
+  ];
 
-  let isOpen = false;
+  function handleClick(folderId: number) {
+    console.log("Clicked folder", folderId);
+    // later: emit event or update store to slide + open folder
+  }
 </script>
 
-<style>
-  .folder {
-    border: 1px solid #444;
-    background-color: #eee;
-    padding: 0.75rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  .folder:hover {
-    background-color: #ddd;
-  }
-
-  .document-container {
-    margin-top: 0.5rem;
-    padding-left: 1rem;
-  }
-</style>
-
-<div class="folder" on:click={() => isOpen = !isOpen}>
-  📁 {type}
+<div class="folders">
+  {#each folders as folder}
+    <div class="folder-tab" on:click={() => handleClick(folder.id)}>
+      {folder.label}
+    </div>
+  {/each}
 </div>
 
-{#if isOpen}
-  <div class="document-container">
-    {#each documents as doc}
-      <DocumentDetails doc={doc} />
-    {/each}
-  </div>
-{/if}
+<style>
+  .folders {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .folder-tab {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg); /* makes text upright in vertical-rl mode */
+    background: beige;
+    border: 1px solid black;
+    border-radius: 0.75rem 0 0 0.75rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    transition: background 0.2s;
+  }
+
+  .folder-tab:hover {
+    background: #eee;
+  }
+</style>

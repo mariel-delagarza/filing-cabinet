@@ -1,42 +1,25 @@
 <script>
-  import Folder from './Folder.svelte';
-  export let data;
+  export let category;
 
-  let isOpen = false;
+  let selectedId = null;
 </script>
 
-
-<div class="cabinet">
-  <div class="drawer">
-    <div class="wrapper">
-      <label>{data.category}</label>
-      <div class="handle"></div>
+<div class="drawer">
+  <div class="wrapper">
+    <div class="drawer-label">
+      <span>{category}</span>
     </div>
-    <div class="files">
-      <span>{data.resource_type}</span>
-    </div>
+    <div class="drawer-handle"></div>
   </div>
+
+  <div class="files"></div>
 </div>
 
-
 <style>
-  * {
-    box-sizing: border-box;
-  }
-
-  .cabinet {
-    background-color: #202020;
-    width: 250px;
-    height: 400px;
-    padding: 10px;
-    /* margin: 80px auto; */
-    border-radius: 3px;
-  }
-
   .drawer {
     position: relative;
     width: 100%;
-    height: 50%;
+    height: 120px;
     border: 2px solid #000000;
     margin: 0 auto;
     background: linear-gradient(135deg, #828282 0%, #202020 40%);
@@ -59,30 +42,32 @@
     top: -27px;
   }
 
-  .wrapper {
-    margin: 0 auto;
-    top: 50%;
-    transform: translateY(-50%);
-    position: relative;
-    width: 60px;
-  }
-
-  label {
+  .drawer-label {
+    color: white;
+    text-align: center;
     display: block;
-    width: 75%;
+    width: 90%;
     height: 30px;
     border: 2px solid #dddddd;
     margin: 0 auto 30px auto;
     box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 1);
   }
 
-  .handle {
+  .drawer-handle {
     display: block;
     position: relative;
     background: linear-gradient(to bottom, #dddddd 0%, #5e5e5e 100%);
     width: 100%;
     height: 7px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+  }
+
+  .wrapper {
+    margin: 0 auto;
+    top: 50%;
+    transform: translateY(-50%);
+    position: relative;
+    width: 60px;
   }
 
   .files {
@@ -101,6 +86,7 @@
 
   .files::before,
   .files::after {
+    content: "";
     position: absolute;
     top: -10px;
     height: 10px;
@@ -108,7 +94,6 @@
     box-shadow: -1px -2px 5px rgba(0, 0, 0, 0.2);
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    content: "";
   }
 
   .files::before {
