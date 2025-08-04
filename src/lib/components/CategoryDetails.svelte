@@ -6,11 +6,9 @@
 
   console.log("CategoryDetails data:", data);
 
-  let totalDocuments = data.length;
-  console.log("Total documents:", totalDocuments);
+  $: totalDocuments = data.length;
 
-  let types = [...new Set(data.map((item) => item.type))];
-  console.log("Types of documents:", types);
+  $: types = [...new Set(data.map((item) => item.type))];
 
   let names = [
     ...new Map(
@@ -37,6 +35,12 @@
         <li>{type}</li>
       {/each}
     </ul>
+    <p><span class="bold">People involved:</span></p>
+    <ul>
+      {#each names as person}
+        <li>{person.name}</li>
+      {/each}
+    </ul>
   </div>
 </div>
 
@@ -52,7 +56,7 @@
     padding: 1rem;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     font-family: "Special Elite", serif;
-    font-size: 1.25rem;
+    font-size: 1rem;
     width: calc(var(--folder-width));
     margin-left: 2rem;
     margin-top: 4rem;
