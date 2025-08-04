@@ -22,6 +22,39 @@
   $: if (names) {
     console.log("Names:", names);
   }
+
+  $: tags = [
+  ...new Set(
+    data
+      .flatMap((item) => item.content_tags || []) // flatten all tags into one array
+      .map((tag) => tag.trim())
+      .filter((tag) => tag !== "") // remove empty strings
+  )
+];
+
+$: sortedTags = tags.slice().sort((a, b) => a.localeCompare(b));
+$: dates = data
+  .map((item) => new Date(item.date))
+  .filter((date) => !isNaN(date)); // remove invalid dates
+
+$: earliestDate = dates.length
+  ? new Date(Math.min(...dates))
+  : null;
+
+$: latestDate = dates.length
+  ? new Date(Math.max(...dates))
+  : null;
+
+function formatDate(date) {
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+
+$: formattedStartDate = formatDate(earliestDate);
+$: formattedEndDate = formatDate(latestDate);
 </script>
 
 <div class="category-details">
@@ -41,7 +74,7 @@
       </ul>
     </div>
     <div class="postit-wrapper">
-      <PostIt text="START includes START I, START II, and New START." />
+      <PostIt text="" startDate={formattedStartDate} endDate={formattedEndDate} />
     </div>
 
     <div class="category-people">
