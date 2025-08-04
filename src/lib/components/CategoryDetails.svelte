@@ -1,10 +1,15 @@
 <script>
   export let category;
   export let description;
+  export let full_name;
+  export let data = []; 
+
+  console.log("CategoryDetails data:", data);
 </script>
 
 <div class="category-details">
   <h2>{category}</h2>
+  <h3>{full_name}</h3>
   <p>{description}</p>
 </div>
 
@@ -14,7 +19,7 @@
     border: 2px solid #ccc;
     padding: 1rem;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    font-family: "Source Serif 4", serif;
+    font-family: "Special Elite", serif;
     /* max-width: 500px; */
     width: calc(var(--folder-width));
     margin-left: 2rem;

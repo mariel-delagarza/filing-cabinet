@@ -2,14 +2,14 @@
   import Cabinet from "./Cabinet.svelte";
   import Folder from "./Folder.svelte";
   import CategoryDetails from "./CategoryDetails.svelte";
-  import getData from "$lib/data.js"; // adjust path if needed
+  import getData from "../data.js";
   import { onMount } from "svelte";
 
-  let parsedData = null;
+  let rawData = [];
 
   onMount(async () => {
-    parsedData = await getData();
-    console.log("Parsed live data:", parsedData);
+    const result = await getData();
+    rawData = result.data;
   });
 
   let folders = [
@@ -18,6 +18,22 @@
     { id: 3, label: "Implementation" },
     { id: 4, label: "Dispute Resolution" },
   ];
+
+  $: selectedCategory =
+    activeDrawer !== null ? categoryDescriptions[activeDrawer]?.label : null;
+
+  $: categoryData = selectedCategory
+    ? rawData.filter(
+        (d) =>
+          d.associated_agreement &&
+          d.associated_agreement
+            .split(";")
+            .some(
+              (val) =>
+                val.trim().toLowerCase() === selectedCategory.toLowerCase()
+            )
+      )
+    : [];
 
   let activeDrawer = null;
 
@@ -28,23 +44,29 @@
   const categoryDescriptions = [
     {
       label: "BWC",
-      description: "Biological Weapons Convention materials and related files.",
+      full_name: "Biological Weapons Convention",
+      description:
+        "Materials and related files from the Biological Weapons Convention.",
     },
     {
       label: "CWC",
-      description: "Chemical Weapons Convention agreements and notes.",
+      full_name: "Chemical Weapons Convention",
+      description: "Agreements and notes from the Chemical Weapons Convention.",
     },
     {
       label: "INF",
-      description: "Intermediate-Range Nuclear Forces Treaty documents.",
+      full_name: "Intermediate-Range Nuclear Forces Treaty",
+      description: "Documents from the INF Treaty.",
     },
     {
       label: "PNI'S",
-      description: "Presidential Nuclear Initiatives records.",
+      full_name: "Presidential Nuclear Initiatives",
+      description: "Records from the Presidential Nuclear Initiatives.",
     },
     {
       label: "START",
-      description: "Strategic Arms Reduction Treaty files.",
+      full_name: "Strategic Arms Reduction Treaty",
+      description: "Files from the START agreements.",
     },
   ];
 </script>
@@ -63,7 +85,9 @@
         {#if activeDrawer !== null}
           <CategoryDetails
             category={categoryDescriptions[activeDrawer].label}
+            full_name={categoryDescriptions[activeDrawer].full_name}
             description={categoryDescriptions[activeDrawer].description}
+            data={categoryData}
           />
         {/if}
       </div>
