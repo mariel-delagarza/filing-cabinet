@@ -19,7 +19,7 @@
   .drawer {
     position: relative;
     width: 100%;
-    height: 120px;
+    height: 19.3%;
     border: 2px solid #000000;
     margin: 0 auto;
     background: linear-gradient(135deg, #828282 0%, #202020 40%);

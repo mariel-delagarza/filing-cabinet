@@ -13,9 +13,9 @@
   .cabinet {
     background-color: #202020;
     width: 250px;
-    height: 620px;
+    height: 100%;
     padding: 10px;
-    margin: 80px auto;
+    margin: auto;
     margin-left: 2rem;
     border-radius: 3px;
   }
