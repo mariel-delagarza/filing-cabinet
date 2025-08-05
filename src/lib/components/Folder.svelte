@@ -53,4 +53,21 @@
   .tab:not(:first-child) {
     background: linear-gradient(to left, #fdfadd 80%, #cfc7a0 100%);
   }
+
+  @media (max-width: 1280px) {
+    .folder {
+      width: 90%;
+      height: 95%;
+      margin-top: 1rem;
+    }
+
+    .tab-bar {
+      right: -1.5rem; /* adjust for smaller screens */
+    }
+
+    .tab {
+      font-size: 1.5rem;
+      padding: 0.8rem 0.4rem;
+    }
+  }
 </style>

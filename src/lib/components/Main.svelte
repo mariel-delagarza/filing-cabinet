@@ -80,45 +80,47 @@
   ];
 </script>
 
-<header class="site-header">
-  <img src="/assets/logo.svg" alt="Site Header" class="site-header__logo" />
-</header>
-<section class="hero">
-  <div class="hero__content">
-    <h1>Arms Control Treaty Archive</h1>
-    <p>
-      A historical record of major multilateral and bilateral arms control
-      agreements.
-    </p>
-  </div>
-</section>
-<div class="wrapper">
-  <div class="main">
-    <Cabinet
-      categories={categoryDescriptions}
-      on:drawerClick={(e) => handleDrawerClick(e.detail)}
-      {activeDrawer}
-    />
-    <div class="folder-area" style="--folder-width: 45%;">
-      <div class="category-details-wrapper">
-        {#if activeDrawer !== null && categoryData.length > 0}
-          <CategoryDetails
-            category={categoryDescriptions[activeDrawer].label}
-            full_name={categoryDescriptions[activeDrawer].full_name}
-            description={categoryDescriptions[activeDrawer].description}
-            data={categoryData}
-          />
-        {/if}
-      </div>
-
-      <Folder
-        phases={[
-          "Pre-Negotiation",
-          "Negotiation",
-          "Implementation",
-          "Dispute Resolution",
-        ]}
+<div class="layout">
+  <header class="site-header">
+    <img src="/assets/logo.svg" alt="Site Header" class="site-header__logo" />
+  </header>
+  <section class="hero">
+    <div class="hero__content">
+      <h1>Arms Control Treaty Archive</h1>
+      <p>
+        A historical record of major multilateral and bilateral arms control
+        agreements.
+      </p>
+    </div>
+  </section>
+  <div class="wrapper">
+    <div class="main">
+      <Cabinet
+        categories={categoryDescriptions}
+        on:drawerClick={(e) => handleDrawerClick(e.detail)}
+        {activeDrawer}
       />
+      <div class="folder-area" style="--folder-width: 45%;">
+        <div class="category-details-wrapper">
+          {#if activeDrawer !== null && categoryData.length > 0}
+            <CategoryDetails
+              category={categoryDescriptions[activeDrawer].label}
+              full_name={categoryDescriptions[activeDrawer].full_name}
+              description={categoryDescriptions[activeDrawer].description}
+              data={categoryData}
+            />
+          {/if}
+        </div>
+
+        <Folder
+          phases={[
+            "Pre-Negotiation",
+            "Negotiation",
+            "Implementation",
+            "Dispute Resolution",
+          ]}
+        />
+      </div>
     </div>
   </div>
 </div>
@@ -146,6 +148,14 @@
       font-weight: normal;
       font-style: normal;
     }
+  }
+
+  .layout {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 1rem;
+    box-sizing: border-box;
   }
 
   .site-header {
