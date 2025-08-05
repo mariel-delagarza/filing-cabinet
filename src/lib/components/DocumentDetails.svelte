@@ -28,6 +28,13 @@
   .document a:hover {
     text-decoration: underline;
   }
+
+  @media (max-width: 1280px) {
+    .document {
+      width: 90%;
+      margin: 0 auto;
+    }
+  }
 </style>
 
 <div class="document">

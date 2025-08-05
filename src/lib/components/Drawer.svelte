@@ -1,42 +1,34 @@
 <script>
-  import Folder from './Folder.svelte';
-  export let data;
+  export let category;
+  export let isActive = false;
+  export let id;
+  let selectedId = null;
 
-  let isOpen = false;
+  // Dispatch click upward
+  import { createEventDispatcher } from "svelte";
+  const dispatch = createEventDispatcher();
+
+  function handleClick() {
+    dispatch("click", id);
+  }
 </script>
 
-
-<div class="cabinet">
-  <div class="drawer">
-    <div class="wrapper">
-      <label>{data.category}</label>
-      <div class="handle"></div>
+<div class="drawer {isActive ? 'open' : ''}" on:click={handleClick}>
+  <div class="wrapper">
+    <div class="drawer-label">
+      <span id="drawer-label-text">{category}</span>
     </div>
-    <div class="files">
-      <span>{data.resource_type}</span>
-    </div>
+    <div class="drawer-handle"></div>
   </div>
+
+  <div class="files"></div>
 </div>
 
-
 <style>
-  * {
-    box-sizing: border-box;
-  }
-
-  .cabinet {
-    background-color: #202020;
-    width: 250px;
-    height: 400px;
-    padding: 10px;
-    margin: 80px auto;
-    border-radius: 3px;
-  }
-
   .drawer {
     position: relative;
-    width: 100%;
-    height: 50%;
+    width: 96%;
+    height: 19.5%;
     border: 2px solid #000000;
     margin: 0 auto;
     background: linear-gradient(135deg, #828282 0%, #202020 40%);
@@ -44,19 +36,55 @@
     transition: all 1s;
     box-shadow: 0 0 0 rgba(0, 0, 0, 0);
     z-index: 1;
-  }
+  } 
 
-  .drawer:hover {
+  .drawer.open {
     background-size: 200%;
     transform: scale(1.15);
     z-index: 2;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.7);
   }
 
-  .drawer:hover .files {
+  .drawer.open .files {
     display: block;
     height: 25px;
     top: -27px;
+  }
+
+  .drawer-label {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 65px;
+    padding: 0.25rem 0; /* optional: add top/bottom breathing room */
+
+    border: 2px solid #dddddd;
+    margin: 0 auto 30px auto;
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 1);
+  }
+
+  #drawer-label-text {
+    font-family: "Impact Label", sans-serif;
+    background: #111;
+    color: white;
+    /* padding: 0.25rem 0.5rem; */
+    font-size: 2.25rem;
+    line-height: 1;
+    display: inline-block;
+    transform: rotate(-1deg);
+    /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4); */
+    filter: invert(1) brightness(1.5); /* Key */
+  }
+
+  .drawer-handle {
+    display: block;
+    position: relative;
+    background: linear-gradient(to bottom, #dddddd 0%, #5e5e5e 100%);
+    width: 100%;
+    height: 7px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
   }
 
   .wrapper {
@@ -64,25 +92,7 @@
     top: 50%;
     transform: translateY(-50%);
     position: relative;
-    width: 60px;
-  }
-
-  label {
-    display: block;
-    width: 75%;
-    height: 30px;
-    border: 2px solid #dddddd;
-    margin: 0 auto 30px auto;
-    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 1);
-  }
-
-  .handle {
-    display: block;
-    position: relative;
-    background: linear-gradient(to bottom, #dddddd 0%, #5e5e5e 100%);
-    width: 100%;
-    height: 7px;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+    width: 120px;
   }
 
   .files {
@@ -101,6 +111,7 @@
 
   .files::before,
   .files::after {
+    content: "";
     position: absolute;
     top: -10px;
     height: 10px;
@@ -108,7 +119,6 @@
     box-shadow: -1px -2px 5px rgba(0, 0, 0, 0.2);
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    content: "";
   }
 
   .files::before {
