@@ -4,6 +4,7 @@
   import CategoryDetails from "./CategoryDetails.svelte";
   import getData from "../data.js";
   import { onMount } from "svelte";
+  import { base } from '$app/paths';
 
   let rawData = [];
 
@@ -82,7 +83,7 @@
 
 <div class="layout">
   <header class="site-header">
-    <img src="/assets/logo.svg" alt="Site Header" class="site-header__logo" />
+    <img src="{base}/assets/logo.svg" alt="Site Header" class="site-header__logo" />
   </header>
   <section class="hero">
     <div class="hero__content">
