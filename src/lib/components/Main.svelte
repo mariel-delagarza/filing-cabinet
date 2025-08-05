@@ -187,7 +187,7 @@
 
   .folder-area {
     position: relative;
-    background-image: url("../assets/dark_wood.jpeg");
+    background-image: url("/assets/dark_wood.jpeg");
     background-size: cover;
     background-position: center;
     flex: 1;
@@ -218,7 +218,7 @@
   /* ------------------------ Hero ------------------------ */
   .hero {
     height: 100vh;
-    background-image: url("../assets/cover.jpg");
+    background-image: url("/assets/cover.jpg");
     background-size: cover;
     background-position: center;
     color: black;
