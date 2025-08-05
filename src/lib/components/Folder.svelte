@@ -19,7 +19,7 @@
 <style>
   .folder {
     position: relative;
-    width: 40%;
+    width: 45%;
     height: 95%;
     background: linear-gradient(to left, #fdfadd 90%, #cfc7a0 100%);
     z-index: 2;
@@ -52,6 +52,18 @@
   /* Apply shadow to all tabs except the first one */
   .tab:not(:first-child) {
     background: linear-gradient(to left, #fdfadd 80%, #cfc7a0 100%);
+  }
+
+  @media (max-width: 1600px) {
+    .folder {
+      width: 75%;
+      height: 95%;
+    }
+
+    .tab {
+      font-size: 1.6rem;
+      padding: 0.9rem 0.45rem;
+    }
   }
 
   @media (max-width: 1280px) {

@@ -100,7 +100,7 @@
         on:drawerClick={(e) => handleDrawerClick(e.detail)}
         {activeDrawer}
       />
-      <div class="folder-area" style="--folder-width: 45%;">
+      <div class="folder-area" style="--folder-width: 50%;">
         <div class="category-details-wrapper">
           {#if activeDrawer !== null && categoryData.length > 0}
             <CategoryDetails
@@ -152,9 +152,7 @@
 
   .layout {
     width: 100%;
-    max-width: 1600px;
     margin: 0 auto;
-    padding: 1rem;
     box-sizing: border-box;
   }
 
