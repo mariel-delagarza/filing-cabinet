@@ -102,7 +102,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-image: url("../assets/oldpaper.jpg");
+    background-image: url("/assets/oldpaper.jpg");
     background-size: cover;
     background-position: center;
     padding: 1rem;

@@ -31,7 +31,7 @@
 
 <style>
   .post-it {
-    background-image: url("../assets/old-note.png");
+    background-image: url("/assets/old-note.png");
     background-size: cover;
     background-position: center;
     width: 350px;
