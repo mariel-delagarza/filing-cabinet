@@ -86,10 +86,9 @@
   </header>
   <section class="hero">
     <div class="hero__content">
-      <h1>Arms Control Treaty Archive</h1>
+      <h1>Lorem Ipsum dolor Sit Amet</h1>
       <p>
-        A historical record of major multilateral and bilateral arms control
-        agreements.
+        Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
       </p>
     </div>
   </section>
